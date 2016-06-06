@@ -26,12 +26,12 @@ public class ScoreCalculator {
 	}
 
 	private void manageFrame(List<Integer> rolls) {
+		frameIndex += 1;
+
 		if(frameComplete()) {
 			calculateStrikeBonus(rolls);
 			calculateSpareBonus(rolls);
 			resetFrame();
-		} else {
-			moveToSecondHalfOfFrame();
 		}
 	}
 
@@ -53,7 +53,7 @@ public class ScoreCalculator {
 	}
 
 	private boolean isStrike() {
-		return frameIndex == 0 && frameScore == 10;
+		return frameIndex == 1 && frameScore == 10;
 	}
 
 	private void calculateSpareBonus(List<Integer> rolls) {
@@ -63,15 +63,11 @@ public class ScoreCalculator {
 	}
 	
 	private boolean isSpare() {
-		return frameIndex == 1 && frameScore == 10;
+		return frameIndex == 2 && frameScore == 10;
 	}
 
 	private void resetFrame() {
 		frameScore = 0;
 		frameIndex = 0;
-	}
-
-	private void moveToSecondHalfOfFrame() {
-		frameIndex += 1;
 	}
 }
